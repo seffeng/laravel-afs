@@ -1,0 +1,44 @@
+{
+    "name" : "seffeng/laravel-afs",
+    "description" : "PHP laravel extension afs",
+    "keywords" : [
+        "PHP",
+        "laravel",
+        "lumen",
+        "seffeng",
+        "afs"
+    ],
+    "license" : "MIT",
+    "homepage" : "https://github.com/seffeng/laravel-afs",
+    "authors" : [{
+            "name" : "seffeng",
+            "email" : "save.zxf@gmail.com",
+            "homepage" : "https://github.com/seffeng"
+        }
+    ],
+    "require" : {
+        "php" : ">=7.1.3",
+        "seffeng/afs" : ">=0.1"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : "^9.1"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Seffeng\\LaravelAfs\\" : "src/"
+        }
+    },
+    "autoload-dev" : {
+        "psr-4" : {
+            "Seffeng\\LaravelAfs\\Tests\\" : "tests/"
+        }
+    },
+    "extra" : {
+        "laravel" : {
+            "providers" : [
+                "Seffeng\\LaravelAfs\\AfsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability" : "stable"
+}
