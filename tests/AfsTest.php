@@ -18,11 +18,11 @@ class AfsTest extends TestCase
             $sessionId = '01sWbn...';   // 会话ID，必填参数，从前端获取
 
             // Afs::loadClient('client');   //当有多个客户端时，使用其他客户端
-            AFS::setRemoteIp($ip);
-            AFS::setScene($scene);
+            Afs::setRemoteIp($ip);
+            Afs::setScene($scene);
             Afs::setToken($token);
-            AFS::setSig($sig);
-            AFS::setSessionId($sessionId);
+            Afs::setSig($sig);
+            Afs::setSessionId($sessionId);
             var_dump(Afs::verify()); // 仅为true，其他情况抛出异常(AfsException)
         } catch (AfsException $e) {
             echo $e->getMessage();
