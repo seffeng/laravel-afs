@@ -26,7 +26,7 @@ class AfsServiceProvider extends BaseServiceProvider
             $config = $app['config']->get('afs');
 
             if ($config && is_array($config)) {
-                return new AFS($config);
+                return new Afs($config);
             } else {
                 throw new AfsException('Please execute the command `php artisan vendor:publish --tag="afs"` first to generate afs configuration file.');
             }
