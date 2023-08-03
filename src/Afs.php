@@ -5,7 +5,7 @@
  */
 namespace Seffeng\LaravelAfs;
 
-use Seffeng\Afs\Helpers\ArrayHelper;
+use Seffeng\ArrHelper\Arr;
 use Seffeng\Afs\Exceptions\AfsException;
 use Seffeng\Afs\AfsClient;
 
@@ -40,36 +40,6 @@ class Afs
      *
      * @var string
      */
-    private $token;
-
-    /**
-     *
-     * @var string
-     */
-    private $sig;
-
-    /**
-     *
-     * @var string
-     */
-    private $sessionId;
-
-    /**
-     *
-     * @var string
-     */
-    private $scene;
-
-    /**
-     *
-     * @var string
-     */
-    private $remoteIp;
-
-    /**
-     *
-     * @var string
-     */
     private $client;
 
     /**
@@ -93,7 +63,7 @@ class Afs
     public function __construct(array $config)
     {
         static::$config = $config;
-        $client = ArrayHelper::getValue($config, 'client');
+        $client = Arr::getValue($config, 'client');
         $this->loadClient($client);
     }
 
@@ -119,11 +89,11 @@ class Afs
      */
     protected function loadConfig()
     {
-        $client = ArrayHelper::getValue(static::$config, 'clients.' . $this->getClient());
+        $client = Arr::getValue(static::$config, 'clients.' . $this->getClient());
         if ($client) {
-            $this->accessKeyId = ArrayHelper::getValue($client, 'accessKeyId');
-            $this->accessKeySecret = ArrayHelper::getValue($client, 'accessKeySecret');
-            $this->appKey = ArrayHelper::getValue($client, 'appKey');
+            $this->accessKeyId = Arr::getValue($client, 'accessKeyId');
+            $this->accessKeySecret = Arr::getValue($client, 'accessKeySecret');
+            $this->appKey = Arr::getValue($client, 'appKey');
 
             if (empty($this->getAccessKeyId()) || empty($this->getAccessKeySecret()) || empty($this->getAppKey())) {
                 throw new AfsException('Warning: accessKeyId, accessKeySecret, appKey cannot be empty.');
@@ -132,7 +102,7 @@ class Afs
             throw new AfsException('The client['. $this->getClient() .'] is not found.');
         }
         $this->service = new AfsClient($this->getAccessKeyId(), $this->getAccessKeySecret(), $this->getAppKey());
-        $this->service->setDebug(ArrayHelper::getValue(static::$config, 'debug'));
+        $this->service->setDebug(Arr::getValue(static::$config, 'debug'));
         return $this;
     }
 
